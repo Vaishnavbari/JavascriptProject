@@ -10,7 +10,7 @@ class HomeView(View):
     
 class LoadModuleView(View):
 
-    def get(self, request, count):
-        return render(request, 'app/module.html', {'count': count})
+    def get(self, request):
+       return render(request, 'app/module.html')
     
 # class
