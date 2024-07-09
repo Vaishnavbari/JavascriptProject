@@ -11,4 +11,11 @@ class Project(models.Model):
         return self.name
 
 class Module(models.Model):
-    pass
+    name = models.CharField(max_length=100)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    hours = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.name
