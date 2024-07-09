@@ -31,7 +31,6 @@ class HomeView(View):
            
         project, is_created = Project.objects.get_or_create(name=projectName)
         
-
         for index in range(len(module)):
            Module.objects.create(project=project, name=module[index], hours=hours[index])
 
@@ -39,6 +38,7 @@ class HomeView(View):
     
 class LoadModuleView(View):
 
-    def get(self, request):
-       return render(request, 'app/module.html')
+    def get(self, request, i):
+       i+=1
+       return render(request, 'app/module.html', {"i":i})
     

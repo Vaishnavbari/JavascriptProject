@@ -25,9 +25,26 @@
                         <center><label for="exampleInputEmail1" style="color:white" class="col-8">Enter project name</label></center> <br>
                         <input type="text" id="exampleInputEmail1" class="col-11 input-size" aria-describedby="emailHelp" placeholder="Enter project" name="project">
                     </div>
-                    <div class="form-group col-12  div0"  id="parents" style="margin:0; padding:0">
-                       {% include "app/module.html" %}
-                       </div>
+
+                    <div class="form-group col-12" id="div1"  >
+                        <div class="form-group col-12" style="margin:0; padding:0" >
+                        <center>
+                        <label for="newModuleName" class="col-12" style="color:white">Enter module name</label>
+                        </center>
+                        <br>
+                        <input type="text"  class="col-8 input-size" placeholder="Enter module name" name="module[]">
+                        <input type="number"  placeholder="hours" name="hours[]" class="col-3 input-size">
+                        <button type="button" class="btn btn-success plus" > + </button>
+                        <button type="button" class="btn btn-danger minus"  style="display: none;"> - </button>
+                        </div>
+
+                     <div class="form-group col-12  div0"  id="parents" style="margin:0; padding:0">
+                        {% include "app/module.html" %}
+                     </div>
+
+                    </div>
+                    
+                   
                     <button type="submit" class="btn btn-primary col-4 input-size mt-5">Save</button>
                 </div>
             </form>
@@ -36,16 +53,23 @@
        
     <script>
         $(document).ready( function () {
+            var i=1;
             $(document).on('click', `.plus`, function() {
                 let newid = $(this).attr("class")
                 newid = newid.replace("btn btn-success", "").trim();
-                var parentsLength = $('#parents').children().length;
                 $(`.${newid}`).hide();
+                
+                var parentsLength = $('#div1').children().length;
+                if (parentsLength >=1){
+                    $('#div1').find(".minus").show();
+                }
+                
                 $.ajax({
-                    url: `/app/module`,
+                    url: `/app/module/${i}`,
                     type: "GET",
                     success: function (response) {
                         $(`.div0`).append(response);
+                        i++;
                     },
                     error: function (xhr, status, error) {
                         console.error(error);
@@ -65,7 +89,7 @@
                     if (parentsLength <=1){
                         location.reload()
                     }
-                 } 
+                } 
                 else{
                     parentDiv.remove()
                   

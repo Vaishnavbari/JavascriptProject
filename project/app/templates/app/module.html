@@ -1,5 +1,5 @@
-    
-<div class="form-group col-12"  >
+ {% if i %}   
+<div class="form-group col-12" style="margin:0; padding:0" >
     <center>
     <label for="newModuleName" class="col-12" style="color:white">Enter module name</label>
     </center>
@@ -7,7 +7,7 @@
     <input type="text"  class="col-8 input-size" placeholder="Enter module name" name="module[]">
     <input type="number"  placeholder="hours" name="hours[]" class="col-3 input-size">
     <button type="button" class="btn btn-success plus" > + </button>
-    <button type="button" class="btn btn-danger minus" > - </button>
+    <button type="button" class="btn btn-danger minus"> - </button>
 </div>
-
+{% endif %}
 
