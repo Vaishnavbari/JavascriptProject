@@ -38,7 +38,7 @@ class HomeView(View):
     
 class LoadModuleView(View):
 
-    def get(self, request, i):
-       i+=1
-       return render(request, 'app/module.html', {"i":i})
+    def get(self, request, count):
+       count+=1
+       return render(request, 'app/module.html', {"count":count})
     
